@@ -2,7 +2,7 @@
 简单的请求天气功能，演示Android MVP是如何使用的
 
 # 效果预览
-![](https://github.com/WuXiaolong/AndroidMVPSample/raw/master/screenshots.gif)
+![](https://github.com/WuXiaolong/AndroidMVPSample/raw/master/screenshots.png)
 
 # 详见博客
 [http://wuxiaolong.me/2015/09/23/AndroidMVPSample/](http://wuxiaolong.me/2015/09/23/AndroidMVPSample/)
