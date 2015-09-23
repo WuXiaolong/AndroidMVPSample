@@ -12,6 +12,7 @@ import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by WuXiaolong on 2015/9/23.
+ * 业务具体处理
  */
 public class MainPresenter implements Presenter<MainView> {
     private MainView mMainView;
