@@ -17,6 +17,10 @@ import cz.msebera.android.httpclient.Header;
 public class MainPresenter implements Presenter<MainView> {
     private MainView mMainView;
 
+    public MainPresenter(MainView view) {
+        attachView(view);
+    }
+
     @Override
     public void attachView(MainView view) {
         this.mMainView = view;

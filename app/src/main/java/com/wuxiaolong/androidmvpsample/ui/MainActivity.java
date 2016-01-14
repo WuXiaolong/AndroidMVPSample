@@ -29,8 +29,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private void initView() {
         text = (TextView) findViewById(R.id.text);
         mProgressBar = (ProgressBar) findViewById(R.id.mProgressBar);
-        mMainPresenter = new MainPresenter();
-        mMainPresenter.attachView(this);
+        mMainPresenter = new MainPresenter(this);
         mMainPresenter.loadData();
     }
 
