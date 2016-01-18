@@ -1,22 +1,25 @@
 package com.wuxiaolong.androidmvpsample.ui;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.wuxiaolong.androidmvpsample.R;
-import com.wuxiaolong.androidmvpsample.model.MainModel;
+import com.wuxiaolong.androidmvpsample.model.MainModelBean;
 import com.wuxiaolong.androidmvpsample.presenter.MainPresenter;
 import com.wuxiaolong.androidmvpsample.view.MainView;
 
+/**
+ * Created by WuXiaolong on 2015/9/23.
+ * 由Activity/Fragment实现View里方法，包含一个Presenter的引用
+ */
 public class MainActivity extends AppCompatActivity implements MainView {
-    ProgressBar mProgressBar;
-    TextView text;
-    MainPresenter mMainPresenter;
+    private ProgressBar mProgressBar;
+    private TextView text;
+    private MainPresenter mMainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,14 @@ public class MainActivity extends AppCompatActivity implements MainView {
         text = (TextView) findViewById(R.id.text);
         mProgressBar = (ProgressBar) findViewById(R.id.mProgressBar);
         mMainPresenter = new MainPresenter(this);
-        mMainPresenter.loadData();
+        //制造延迟效果
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mMainPresenter.loadData();
+            }
+        }, 2000);
+
     }
 
     @Override
@@ -40,11 +50,12 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public void showData(MainModel mainModel) {
-        text.setText("城市：" + mainModel.getCity()
-                + "\n风向：" + mainModel.getWd()
-                + "\n风级：" + mainModel.getWs()
-                + "\n发布时间：" + mainModel.getTime());
+    public void showData(MainModelBean mainModelBean) {
+        String showData = getResources().getString(R.string.city) + mainModelBean.getCity()
+                + getResources().getString(R.string.wd) + mainModelBean.getWd()
+                + getResources().getString(R.string.ws) + mainModelBean.getWs()
+                + getResources().getString(R.string.time) + mainModelBean.getTime();
+        text.setText(showData);
     }
 
 
@@ -56,28 +67,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Override
     public void hideProgress() {
         mProgressBar.setVisibility(View.GONE);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
 

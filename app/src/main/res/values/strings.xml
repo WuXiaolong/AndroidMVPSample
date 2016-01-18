@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">AndroidMVPSample</string>
-
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="city">城市:</string>
+    <string name="wd">\n风向:</string>
+    <string name="ws">\n风级:</string>
+    <string name="time">\n发布时间:</string>
 </resources>
