@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private ProgressBar mProgressBar;
     private TextView text;
     private MainPresenter mMainPresenter;
+    private Handler mHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,24 +30,26 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     }
 
+
     private void initView() {
         text = (TextView) findViewById(R.id.text);
         mProgressBar = (ProgressBar) findViewById(R.id.mProgressBar);
         mMainPresenter = new MainPresenter(this);
         //制造延迟效果
-        new Handler().postDelayed(new Runnable() {
+        mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 mMainPresenter.loadData();
             }
-        }, 2000);
+        }, 5000);
 
     }
 
     @Override
     protected void onDestroy() {
-        mMainPresenter.detachView();
         super.onDestroy();
+        mHandler.removeCallbacksAndMessages(null);
+        mMainPresenter.detachView();
     }
 
     @Override

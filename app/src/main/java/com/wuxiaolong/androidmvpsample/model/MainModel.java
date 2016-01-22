@@ -14,7 +14,7 @@ import cz.msebera.android.httpclient.Header;
  * 业务具体处理，包括负责存储、检索、操纵数据等
  */
 public class MainModel {
-    IMainPresenter mIMainPresenter;
+    private IMainPresenter mIMainPresenter;
 
     public MainModel(IMainPresenter iMainPresenter) {
         this.mIMainPresenter = iMainPresenter;
