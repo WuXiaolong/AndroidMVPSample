@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
             public void run() {
                 mMainPresenter.loadData();
             }
-        }, 5000);
+        }, 2000);
 
     }
 
