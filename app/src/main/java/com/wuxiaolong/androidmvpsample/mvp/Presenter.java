@@ -1,4 +1,4 @@
-package com.wuxiaolong.androidmvpsample.presenter;
+package com.wuxiaolong.androidmvpsample.mvp;
 
 public interface Presenter<V> {
 

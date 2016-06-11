@@ -1,9 +1,10 @@
-package com.wuxiaolong.androidmvpsample.model;
+package com.wuxiaolong.androidmvpsample.mvp.main;
 
 /**
  * Created by WuXiaolong on 2015/9/23.
+ * 业务具体处理，包括负责存储、检索、操纵数据等
  */
-public class MainModelBean {
+public class MainModel {
     private String city;
     private String wd;
     private String ws;
@@ -40,4 +41,13 @@ public class MainModelBean {
     public void setTime(String time) {
         this.time = time;
     }
+
+    private IMainPresenter mIMainPresenter;
+
+    public MainModel(IMainPresenter iMainPresenter) {
+        this.mIMainPresenter = iMainPresenter;
+    }
+
+
+
 }

@@ -2,21 +2,21 @@ package com.wuxiaolong.androidmvpsample.ui;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.wuxiaolong.androidmvpsample.R;
-import com.wuxiaolong.androidmvpsample.model.MainModelBean;
-import com.wuxiaolong.androidmvpsample.presenter.MainPresenter;
-import com.wuxiaolong.androidmvpsample.view.MainView;
+import com.wuxiaolong.androidmvpsample.mvp.MvpActivity;
+import com.wuxiaolong.androidmvpsample.mvp.main.MainModelBean;
+import com.wuxiaolong.androidmvpsample.mvp.main.MainPresenter;
+import com.wuxiaolong.androidmvpsample.mvp.main.MainView;
 
 /**
  * Created by WuXiaolong on 2015/9/23.
  * 由Activity/Fragment实现View里方法，包含一个Presenter的引用
  */
-public class MainActivity extends AppCompatActivity implements MainView {
+public class MainActivity extends MvpActivity<MainPresenter> implements MainView {
     private ProgressBar mProgressBar;
     private TextView text;
     private MainPresenter mMainPresenter;
@@ -28,6 +28,11 @@ public class MainActivity extends AppCompatActivity implements MainView {
         setContentView(R.layout.activity_main);
         initView();
 
+    }
+
+    @Override
+    protected MainPresenter createPresenter() {
+        return new MainPresenter(this);
     }
 
 

@@ -1,6 +1,4 @@
-package com.wuxiaolong.androidmvpsample.presenter;
-
-import com.wuxiaolong.androidmvpsample.model.MainModelBean;
+package com.wuxiaolong.androidmvpsample.mvp.main;
 
 /**
  * Created by WuXiaolong on 2015/9/23.
