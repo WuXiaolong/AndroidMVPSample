@@ -1,4 +1,4 @@
-> MVP+Retrofit+RxJava实践小结,一点经验之谈，希望您看完这篇文章，有所收获！
+> MVP+Retrofit+RxJava实践小结，一点经验之谈，希望您看完这篇文章，有所收获！
 
 # 详见博客
 [Android MVP+Retrofit+RxJava实践小结](http://wuxiaolong.me/2016/06/12/mvpRetrofitRxjava/)
