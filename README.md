@@ -1,10 +1,7 @@
 > MVP+Retrofit+RxJava实践小结,一点经验之谈，希望您看完这篇文章，有所收获！
 
-# 效果预览
-![](https://github.com/WuXiaolong/AndroidMVPSample/raw/master/screenshots.png)
-
 # 详见博客
-[http://wuxiaolong.me/2015/09/23/AndroidMVPSample/](http://wuxiaolong.me/2015/09/23/AndroidMVPSample/)
+[Android MVP+Retrofit+RxJava实践小结](http://wuxiaolong.me/2016/06/12/mvpRetrofitRxjava/)
 
 # 推荐阅读
 1、[Android MVP 实例](http://wuxiaolong.me/2015/09/23/AndroidMVPSample/)
