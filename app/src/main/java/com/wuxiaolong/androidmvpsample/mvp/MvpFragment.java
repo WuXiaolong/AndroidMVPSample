@@ -12,9 +12,7 @@ import com.wuxiaolong.androidmvpsample.ui.BaseFragment;
  * A simple {@link Fragment} subclass.
  */
 public abstract class MvpFragment<P extends BasePresenter> extends BaseFragment {
-
     protected P mvpPresenter;
-
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {

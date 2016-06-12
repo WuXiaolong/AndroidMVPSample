@@ -5,49 +5,141 @@ package com.wuxiaolong.androidmvpsample.mvp.main;
  * 业务具体处理，包括负责存储、检索、操纵数据等
  */
 public class MainModel {
-    private String city;
-    private String wd;
-    private String ws;
-    private String time;
 
-    public String getCity() {
-        return city;
+
+    /**
+     * city : 北京
+     * cityid : 101010100
+     * temp : 10
+     * WD : 东南风
+     * WS : 2级
+     * SD : 26%
+     * WSE : 2
+     * time : 10:25
+     * isRadar : 1
+     * Radar : JC_RADAR_AZ9010_JB
+     * njd : 暂无实况
+     * qy : 1012
+     */
+
+    private WeatherinfoBean weatherinfo;
+
+    public WeatherinfoBean getWeatherinfo() {
+        return weatherinfo;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setWeatherinfo(WeatherinfoBean weatherinfo) {
+        this.weatherinfo = weatherinfo;
     }
 
-    public String getWd() {
-        return wd;
+    public static class WeatherinfoBean {
+        private String city;
+        private String cityid;
+        private String temp;
+        private String WD;
+        private String WS;
+        private String SD;
+        private String WSE;
+        private String time;
+        private String isRadar;
+        private String Radar;
+        private String njd;
+        private String qy;
+
+        public String getCity() {
+            return city;
+        }
+
+        public void setCity(String city) {
+            this.city = city;
+        }
+
+        public String getCityid() {
+            return cityid;
+        }
+
+        public void setCityid(String cityid) {
+            this.cityid = cityid;
+        }
+
+        public String getTemp() {
+            return temp;
+        }
+
+        public void setTemp(String temp) {
+            this.temp = temp;
+        }
+
+        public String getWD() {
+            return WD;
+        }
+
+        public void setWD(String WD) {
+            this.WD = WD;
+        }
+
+        public String getWS() {
+            return WS;
+        }
+
+        public void setWS(String WS) {
+            this.WS = WS;
+        }
+
+        public String getSD() {
+            return SD;
+        }
+
+        public void setSD(String SD) {
+            this.SD = SD;
+        }
+
+        public String getWSE() {
+            return WSE;
+        }
+
+        public void setWSE(String WSE) {
+            this.WSE = WSE;
+        }
+
+        public String getTime() {
+            return time;
+        }
+
+        public void setTime(String time) {
+            this.time = time;
+        }
+
+        public String getIsRadar() {
+            return isRadar;
+        }
+
+        public void setIsRadar(String isRadar) {
+            this.isRadar = isRadar;
+        }
+
+        public String getRadar() {
+            return Radar;
+        }
+
+        public void setRadar(String Radar) {
+            this.Radar = Radar;
+        }
+
+        public String getNjd() {
+            return njd;
+        }
+
+        public void setNjd(String njd) {
+            this.njd = njd;
+        }
+
+        public String getQy() {
+            return qy;
+        }
+
+        public void setQy(String qy) {
+            this.qy = qy;
+        }
     }
-
-    public void setWd(String wd) {
-        this.wd = wd;
-    }
-
-    public String getWs() {
-        return ws;
-    }
-
-    public void setWs(String ws) {
-        this.ws = ws;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    private IMainPresenter mIMainPresenter;
-
-    public MainModel(IMainPresenter iMainPresenter) {
-        this.mIMainPresenter = iMainPresenter;
-    }
-
-
-
 }

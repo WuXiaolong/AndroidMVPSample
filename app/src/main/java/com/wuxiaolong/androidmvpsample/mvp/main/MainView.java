@@ -10,7 +10,7 @@ public interface MainView {
 
     void getDataFail(String msg);
 
-    void showProgress();
+    void showLoading();
 
-    void hideProgress();
+    void hideLoading();
 }
