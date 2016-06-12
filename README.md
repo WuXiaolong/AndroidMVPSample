@@ -8,8 +8,11 @@
 
 # 推荐阅读
 1、[Android MVP 实例](http://wuxiaolong.me/2015/09/23/AndroidMVPSample/)
+
 2、[Android Retrofit 2.0使用](http://wuxiaolong.me/2016/01/15/retrofit/)
+
 3、[RxJava](http://wuxiaolong.me/2016/01/18/rxjava/)
+
 4、[RxBus](http://wuxiaolong.me/2016/04/07/rxbus/)
 
 # AndroidProgrammer
