@@ -18,8 +18,9 @@ import butterknife.ButterKnife;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity<P> extends AppCompatActivity {
     public Activity mActivity;
+    protected P presenter;
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
@@ -123,6 +124,4 @@ public class BaseActivity extends AppCompatActivity {
     public void toastShow(String resId) {
         Toast.makeText(mActivity, resId, Toast.LENGTH_SHORT).show();
     }
-
-
 }

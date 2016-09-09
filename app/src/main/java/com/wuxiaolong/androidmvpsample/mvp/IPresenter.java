@@ -1,6 +1,9 @@
 package com.wuxiaolong.androidmvpsample.mvp;
 
-public interface Presenter<V> {
+/**
+ * Created by mengxn on 16-9-9.
+ */
+public interface IPresenter<V> {
 
     void attachView(V view);
 

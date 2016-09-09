@@ -12,7 +12,7 @@ import rx.subscriptions.CompositeSubscription;
 /**
  * Created by WuXiaolong on 2016/3/30.
  */
-public class BasePresenter<V> implements Presenter<V> {
+public class BasePresenter<V> implements IPresenter<V> {
     public V mvpView;
     public ApiStores apiStores = AppClient.retrofit().create(ApiStores.class);
     private CompositeSubscription mCompositeSubscription;

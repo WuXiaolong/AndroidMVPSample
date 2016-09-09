@@ -6,7 +6,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.wuxiaolong.androidmvpsample.R;
-import com.wuxiaolong.androidmvpsample.mvp.MvpActivity;
 import com.wuxiaolong.androidmvpsample.mvp.main.MainModel;
 import com.wuxiaolong.androidmvpsample.mvp.main.MainPresenter;
 import com.wuxiaolong.androidmvpsample.mvp.main.MainView;
@@ -18,7 +17,7 @@ import butterknife.ButterKnife;
  * Created by WuXiaolong on 2015/9/23.
  * 由Activity/Fragment实现View里方法，包含一个Presenter的引用
  */
-public class MainActivity extends MvpActivity<MainPresenter> implements MainView {
+public class MainActivity extends BaseActivity<MainPresenter> implements MainView<MainPresenter> {
 
     @Bind(R.id.text)
     TextView text;
@@ -31,14 +30,16 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         //请求接口
-        mvpPresenter.loadData("101010100");
+        getPresenter().loadData("101010100");
     }
 
     @Override
-    protected MainPresenter createPresenter() {
-        return new MainPresenter(this);
+    public MainPresenter getPresenter() {
+        if (presenter == null) {
+            presenter = new MainPresenter(this);
+        }
+        return presenter;
     }
-
 
     @Override
     public void getDataSuccess(MainModel model) {
