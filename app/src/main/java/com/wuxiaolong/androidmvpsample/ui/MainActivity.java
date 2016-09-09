@@ -11,7 +11,6 @@ import com.wuxiaolong.androidmvpsample.mvp.main.MainPresenter;
 import com.wuxiaolong.androidmvpsample.mvp.main.MainView;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by WuXiaolong on 2015/9/23.
@@ -28,7 +27,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
         //请求接口
         getPresenter().loadData("101010100");
     }
