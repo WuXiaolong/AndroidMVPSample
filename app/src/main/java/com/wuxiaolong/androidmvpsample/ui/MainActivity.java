@@ -15,8 +15,13 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by WuXiaolong on 2015/9/23.
  * 由Activity/Fragment实现View里方法，包含一个Presenter的引用
+ * Created by WuXiaolong
+ * on 2015/9/23.
+ * github:https://github.com/WuXiaolong/
+ * weibo:http://weibo.com/u/2175011601
+ * 微信公众号：吴小龙同学
+ * 个人博客：http://wuxiaolong.me/
  */
 public class MainActivity extends MvpActivity<MainPresenter> implements MainView {
 
