@@ -16,7 +16,12 @@ import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Created by WuXiaolong
+ * on 2015/9/23.
+ * github:https://github.com/WuXiaolong/
+ * weibo:http://weibo.com/u/2175011601
+ * 微信公众号：吴小龙同学
+ * 个人博客：http://wuxiaolong.me/
  */
 public class BaseFragment extends Fragment {
     public Activity mActivity;

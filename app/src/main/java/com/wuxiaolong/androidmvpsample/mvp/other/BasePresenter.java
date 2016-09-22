@@ -1,4 +1,4 @@
-package com.wuxiaolong.androidmvpsample.mvp;
+package com.wuxiaolong.androidmvpsample.mvp.other;
 
 import com.wuxiaolong.androidmvpsample.retrofit.ApiStores;
 import com.wuxiaolong.androidmvpsample.retrofit.AppClient;
@@ -9,21 +9,26 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
+
 /**
- * Created by WuXiaolong on 2016/3/30.
+ * Created by WuXiaolong
+ * on 2015/9/23.
+ * github:https://github.com/WuXiaolong/
+ * weibo:http://weibo.com/u/2175011601
+ * 微信公众号：吴小龙同学
+ * 个人博客：http://wuxiaolong.me/
  */
-public class BasePresenter<V> implements Presenter<V> {
+public class BasePresenter<V> {
     public V mvpView;
-    public ApiStores apiStores = AppClient.retrofit().create(ApiStores.class);
+    protected ApiStores apiStores;
     private CompositeSubscription mCompositeSubscription;
 
-    @Override
     public void attachView(V mvpView) {
         this.mvpView = mvpView;
+        apiStores = AppClient.retrofit().create(ApiStores.class);
     }
 
 
-    @Override
     public void detachView() {
         this.mvpView = null;
         onUnsubscribe();

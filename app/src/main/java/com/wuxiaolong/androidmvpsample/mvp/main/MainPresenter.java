@@ -1,12 +1,15 @@
 package com.wuxiaolong.androidmvpsample.mvp.main;
 
-import com.wuxiaolong.androidmvpsample.mvp.BasePresenter;
-import com.wuxiaolong.androidmvpsample.rxjava.ApiCallback;
-import com.wuxiaolong.androidmvpsample.rxjava.SubscriberCallBack;
+import com.wuxiaolong.androidmvpsample.mvp.other.BasePresenter;
+import com.wuxiaolong.androidmvpsample.retrofit.ApiCallback;
 
 /**
  * Created by WuXiaolong
  * on 2015/9/23.
+ * github:https://github.com/WuXiaolong/
+ * weibo:http://weibo.com/u/2175011601
+ * 微信公众号：吴小龙同学
+ * 个人博客：http://wuxiaolong.me/
  */
 public class MainPresenter extends BasePresenter<MainView> {
 
@@ -14,11 +17,10 @@ public class MainPresenter extends BasePresenter<MainView> {
         attachView(view);
     }
 
-
     public void loadData(String cityId) {
         mvpView.showLoading();
         addSubscription(apiStores.loadData(cityId),
-                new SubscriberCallBack<>(new ApiCallback<MainModel>() {
+                new ApiCallback<MainModel>() {
                     @Override
                     public void onSuccess(MainModel model) {
                         mvpView.getDataSuccess(model);
@@ -30,10 +32,11 @@ public class MainPresenter extends BasePresenter<MainView> {
                     }
 
                     @Override
-                    public void onCompleted() {
+                    public void onFinish() {
                         mvpView.hideLoading();
                     }
-                }));
+
+                });
     }
 
 }

@@ -1,6 +1,7 @@
 package com.wuxiaolong.androidmvpsample.ui;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v7.app.ActionBar;
@@ -13,9 +14,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wuxiaolong.androidmvpsample.R;
+import com.wuxiaolong.androidmvpsample.retrofit.ApiStores;
+import com.wuxiaolong.androidmvpsample.retrofit.AppClient;
 
 import butterknife.ButterKnife;
+import rx.Observable;
+import rx.Subscriber;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -28,6 +35,8 @@ import rx.subscriptions.CompositeSubscription;
  */
 public class BaseActivity extends AppCompatActivity {
     public Activity mActivity;
+    public ApiStores apiStores = AppClient.retrofit().create(ApiStores.class);
+    private CompositeSubscription mCompositeSubscription;
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
@@ -64,7 +73,6 @@ public class BaseActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    private CompositeSubscription mCompositeSubscription;
 
     public void onUnsubscribe() {
         if (mCompositeSubscription != null) {
@@ -72,37 +80,31 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
+    public void addSubscription(Observable observable, Subscriber subscriber) {
+        if (mCompositeSubscription == null) {
+            mCompositeSubscription = new CompositeSubscription();
+        }
+        mCompositeSubscription.add(observable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber));
+    }
+
     public void addSubscription(Subscription subscription) {
-//        if (mCompositeSubscription == null) {
-        mCompositeSubscription = new CompositeSubscription();
-//        }
+        if (mCompositeSubscription == null) {
+            mCompositeSubscription = new CompositeSubscription();
+        }
         mCompositeSubscription.add(subscription);
     }
 
     public Toolbar initToolBar(String title) {
 
-        Toolbar toolbar = initToolBar();
-        TextView toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        toolbar_title.setText(title);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-
-        }
-        return toolbar;
-    }
-
-    public Toolbar initToolBar(int title) {
-        Toolbar toolbar = initToolBar();
-        TextView toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        toolbar_title.setText(title);
-        return toolbar;
-    }
-
-    public Toolbar initToolBar() {
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            TextView toolbaTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+            toolbaTitle.setText(title);
+        }
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -110,6 +112,23 @@ public class BaseActivity extends AppCompatActivity {
         }
         return toolbar;
     }
+
+    public Toolbar initToolBarAsHome(String title) {
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            TextView toolbaTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+            toolbaTitle.setText(title);
+        }
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(false);
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
+        return toolbar;
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -132,5 +151,27 @@ public class BaseActivity extends AppCompatActivity {
         Toast.makeText(mActivity, resId, Toast.LENGTH_SHORT).show();
     }
 
+    public ProgressDialog progressDialog;
+
+    public ProgressDialog showProgressDialog() {
+        progressDialog = new ProgressDialog(mActivity);
+        progressDialog.setMessage("加载中");
+        progressDialog.show();
+        return progressDialog;
+    }
+
+    public ProgressDialog showProgressDialog(CharSequence message) {
+        progressDialog = new ProgressDialog(mActivity);
+        progressDialog.setMessage(message);
+        progressDialog.show();
+        return progressDialog;
+    }
+
+    public void dismissProgressDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            // progressDialog.hide();会导致android.view.WindowLeaked
+            progressDialog.dismiss();
+        }
+    }
 
 }

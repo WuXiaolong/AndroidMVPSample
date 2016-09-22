@@ -3,24 +3,12 @@ package com.wuxiaolong.androidmvpsample.mvp.main;
 /**
  * Created by WuXiaolong on 2015/9/23.
  * 业务具体处理，包括负责存储、检索、操纵数据等
+ * github:https://github.com/WuXiaolong/
+ * weibo:http://weibo.com/u/2175011601
+ * 微信公众号：吴小龙同学
+ * 个人博客：http://wuxiaolong.me/
  */
 public class MainModel {
-
-
-    /**
-     * city : 北京
-     * cityid : 101010100
-     * temp : 10
-     * WD : 东南风
-     * WS : 2级
-     * SD : 26%
-     * WSE : 2
-     * time : 10:25
-     * isRadar : 1
-     * Radar : JC_RADAR_AZ9010_JB
-     * njd : 暂无实况
-     * qy : 1012
-     */
 
     private WeatherinfoBean weatherinfo;
 
