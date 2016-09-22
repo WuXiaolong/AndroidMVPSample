@@ -1,5 +1,9 @@
 > MVP+Retrofit+RxJava实践小结，一点经验之谈，希望您看完这篇文章，有所收获！
 
+
+# 效果预览
+![](http://7q5c2h.com1.z0.glb.clouddn.com/mvp_retrofit_rxjava.jpg?watermark/2/text/5ZC05bCP6b6Z5ZCM5a24/font/5qW35L2T/fontsize/500/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
+
 # 详见博客
 [Android MVP+Retrofit+RxJava实践小结](http://wuxiaolong.me/2016/06/12/mvpRetrofitRxjava/)
 
