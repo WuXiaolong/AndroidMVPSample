@@ -1,4 +1,4 @@
-> MVP+Retrofit+RxJava实践小结，一点经验之谈，希望您看完这篇文章，有所收获！
+> MVP+Retrofit+RxJava实践小结，此Sample最初是Android MVP示例，后来融合Retrofit和RxJava，供参考。
 
 
 # 效果预览
