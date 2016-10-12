@@ -2,6 +2,7 @@ package com.wuxiaolong.androidmvpsample.retrofit;
 
 import com.wuxiaolong.androidmvpsample.mvp.main.MainModel;
 
+import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import rx.Observable;
@@ -20,5 +21,9 @@ public interface ApiStores {
 
     //加载天气
     @GET("adat/sk/{cityId}.html")
-    Observable<MainModel> loadData(@Path("cityId") String cityId);
+    Call<MainModel> loadDataByRetrofit(@Path("cityId") String cityId);
+
+    //加载天气
+    @GET("adat/sk/{cityId}.html")
+    Observable<MainModel> loadDataByRetrofitRxjava(@Path("cityId") String cityId);
 }

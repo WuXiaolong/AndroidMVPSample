@@ -16,8 +16,13 @@ import android.widget.Toast;
 import com.wuxiaolong.androidmvpsample.R;
 import com.wuxiaolong.androidmvpsample.retrofit.ApiStores;
 import com.wuxiaolong.androidmvpsample.retrofit.AppClient;
+import com.wuxiaolong.androidutils.library.LogUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
+import retrofit2.Call;
 import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
@@ -37,6 +42,7 @@ public class BaseActivity extends AppCompatActivity {
     public Activity mActivity;
     public ApiStores apiStores = AppClient.retrofit().create(ApiStores.class);
     private CompositeSubscription mCompositeSubscription;
+    private List<Call> calls;
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
@@ -69,16 +75,28 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        callCancel();
         onUnsubscribe();
         super.onDestroy();
     }
 
+    public void addCalls(Call call) {
+        if (calls == null) {
+            calls = new ArrayList<>();
+        }
+        calls.add(call);
+    }
 
-    public void onUnsubscribe() {
-        if (mCompositeSubscription != null) {
-            mCompositeSubscription.unsubscribe();//取消注册，以避免内存泄露
+    private void callCancel() {
+        LogUtil.d("callCancel");
+        if (calls.size() > 0) {
+            for (Call call : calls) {
+                call.cancel();
+            }
+            calls.clear();
         }
     }
+
 
     public void addSubscription(Observable observable, Subscriber subscriber) {
         if (mCompositeSubscription == null) {
@@ -95,6 +113,14 @@ public class BaseActivity extends AppCompatActivity {
             mCompositeSubscription = new CompositeSubscription();
         }
         mCompositeSubscription.add(subscription);
+    }
+
+    public void onUnsubscribe() {
+        LogUtil.d("onUnsubscribe");
+        if (mCompositeSubscription != null) {
+            //取消注册，以避免内存泄露
+            mCompositeSubscription.unsubscribe();
+        }
     }
 
     public Toolbar initToolBar(String title) {

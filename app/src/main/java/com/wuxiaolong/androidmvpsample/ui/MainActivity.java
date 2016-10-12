@@ -14,6 +14,9 @@ import com.wuxiaolong.androidmvpsample.retrofit.ApiCallback;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * 由Activity/Fragment实现View里方法，包含一个Presenter的引用
@@ -47,12 +50,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
     @Override
     public void getDataSuccess(MainModel model) {
         //接口成功回调
-        MainModel.WeatherinfoBean weatherinfo = model.getWeatherinfo();
-        String showData = getResources().getString(R.string.city) + weatherinfo.getCity()
-                + getResources().getString(R.string.wd) + weatherinfo.getWD()
-                + getResources().getString(R.string.ws) + weatherinfo.getWS()
-                + getResources().getString(R.string.time) + weatherinfo.getTime();
-        text.setText(showData);
+        dataSuccess(model);
     }
 
     @Override
@@ -72,32 +70,49 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
     }
 
 
-    @OnClick({R.id.button1, R.id.button2})
+    @OnClick({R.id.button0, R.id.button1, R.id.button2})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.button0:
+                loadDataByRetrofit();
+                break;
             case R.id.button1:
-                loadData();
+                loadDataByRetrofitRxjava();
                 break;
             case R.id.button2:
                 //请求接口
-                mvpPresenter.loadData("101310222");
+                mvpPresenter.loadDataByRetrofitRxjava("101310222");
                 break;
         }
     }
 
-    //全国+国外主要城市代码http://mobile.weather.com.cn/js/citylist.xml
-    private void loadData() {
+    private void loadDataByRetrofit() {
         showProgressDialog();
-        addSubscription(apiStores.loadData("101190201"),
+        Call<MainModel> call = apiStores.loadDataByRetrofit("101190201");
+        call.enqueue(new Callback<MainModel>() {
+            @Override
+            public void onResponse(Call<MainModel> call, Response<MainModel> response) {
+                dataSuccess(response.body());
+                dismissProgressDialog();
+            }
+
+            @Override
+            public void onFailure(Call<MainModel> call, Throwable t) {
+                toastShow(t.getMessage());
+                dismissProgressDialog();
+            }
+        });
+        addCalls(call);
+    }
+
+    //全国+国外主要城市代码http://mobile.weather.com.cn/js/citylist.xml
+    private void loadDataByRetrofitRxjava() {
+        showProgressDialog();
+        addSubscription(apiStores.loadDataByRetrofitRxjava("101220602"),
                 new ApiCallback<MainModel>() {
                     @Override
                     public void onSuccess(MainModel model) {
-                        MainModel.WeatherinfoBean weatherinfo = model.getWeatherinfo();
-                        String showData = getResources().getString(R.string.city) + weatherinfo.getCity()
-                                + getResources().getString(R.string.wd) + weatherinfo.getWD()
-                                + getResources().getString(R.string.ws) + weatherinfo.getWS()
-                                + getResources().getString(R.string.time) + weatherinfo.getTime();
-                        text.setText(showData);
+                        dataSuccess(model);
                     }
 
                     @Override
@@ -111,5 +126,14 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
                         dismissProgressDialog();
                     }
                 });
+    }
+
+    private void dataSuccess(MainModel model) {
+        MainModel.WeatherinfoBean weatherinfo = model.getWeatherinfo();
+        String showData = getResources().getString(R.string.city) + weatherinfo.getCity()
+                + getResources().getString(R.string.wd) + weatherinfo.getWD()
+                + getResources().getString(R.string.ws) + weatherinfo.getWS()
+                + getResources().getString(R.string.time) + weatherinfo.getTime();
+        text.setText(showData);
     }
 }
