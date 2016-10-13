@@ -27,9 +27,10 @@ public class MainPresenter extends BasePresenter<MainView> {
                     }
 
                     @Override
-                    public void onFailure(int code, String msg) {
+                    public void onFailure(String msg) {
                         mvpView.getDataFail(msg);
                     }
+
 
                     @Override
                     public void onFinish() {

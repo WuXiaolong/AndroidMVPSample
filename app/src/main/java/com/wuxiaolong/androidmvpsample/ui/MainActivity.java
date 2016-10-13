@@ -10,13 +10,12 @@ import com.wuxiaolong.androidmvpsample.mvp.main.MainPresenter;
 import com.wuxiaolong.androidmvpsample.mvp.main.MainView;
 import com.wuxiaolong.androidmvpsample.mvp.other.MvpActivity;
 import com.wuxiaolong.androidmvpsample.retrofit.ApiCallback;
+import com.wuxiaolong.androidmvpsample.retrofit.RetrofitCallback;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * 由Activity/Fragment实现View里方法，包含一个Presenter的引用
@@ -59,6 +58,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
 
     }
 
+
     @Override
     public void showLoading() {
         showProgressDialog();
@@ -89,16 +89,24 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
     private void loadDataByRetrofit() {
         showProgressDialog();
         Call<MainModel> call = apiStores.loadDataByRetrofit("101190201");
-        call.enqueue(new Callback<MainModel>() {
+        call.enqueue(new RetrofitCallback<MainModel>() {
             @Override
-            public void onResponse(Call<MainModel> call, Response<MainModel> response) {
-                dataSuccess(response.body());
-                dismissProgressDialog();
+            public void onSuccess(MainModel model) {
+                dataSuccess(model);
             }
 
             @Override
-            public void onFailure(Call<MainModel> call, Throwable t) {
+            public void onFailure(int code, String msg) {
+                toastShow(msg);
+            }
+
+            @Override
+            public void onThrowable(Throwable t) {
                 toastShow(t.getMessage());
+            }
+
+            @Override
+            public void onFinish() {
                 dismissProgressDialog();
             }
         });
@@ -116,7 +124,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
                     }
 
                     @Override
-                    public void onFailure(int code, String msg) {
+                    public void onFailure(String msg) {
                         toastShow(msg);
 
                     }

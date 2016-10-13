@@ -18,7 +18,7 @@ public abstract class ApiCallback<M> extends Subscriber<M> {
 
     public abstract void onSuccess(M model);
 
-    public abstract void onFailure(int code, String msg);
+    public abstract void onFailure(String msg);
 
     public abstract void onFinish();
 
@@ -38,9 +38,9 @@ public abstract class ApiCallback<M> extends Subscriber<M> {
             if (code == 502 || code == 404) {
                 msg = "服务器异常，请稍后再试";
             }
-            onFailure(code, msg);
+            onFailure(msg);
         } else {
-            onFailure(0, e.getMessage());
+            onFailure(e.getMessage());
         }
         onFinish();
     }
