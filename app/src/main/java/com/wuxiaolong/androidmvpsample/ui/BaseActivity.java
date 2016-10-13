@@ -91,7 +91,8 @@ public class BaseActivity extends AppCompatActivity {
         LogUtil.d("callCancel");
         if (calls.size() > 0) {
             for (Call call : calls) {
-                call.cancel();
+                if (!call.isCanceled())
+                    call.cancel();
             }
             calls.clear();
         }
@@ -117,10 +118,9 @@ public class BaseActivity extends AppCompatActivity {
 
     public void onUnsubscribe() {
         LogUtil.d("onUnsubscribe");
-        if (mCompositeSubscription != null) {
-            //取消注册，以避免内存泄露
+        //取消注册，以避免内存泄露
+        if (mCompositeSubscription != null && mCompositeSubscription.hasSubscriptions())
             mCompositeSubscription.unsubscribe();
-        }
     }
 
     public Toolbar initToolBar(String title) {
