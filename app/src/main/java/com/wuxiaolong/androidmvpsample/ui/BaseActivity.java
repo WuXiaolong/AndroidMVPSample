@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wuxiaolong.androidmvpsample.R;
+import com.wuxiaolong.androidmvpsample.mvp.IView;
+import com.wuxiaolong.androidmvpsample.mvp.other.BasePresenter;
 import com.wuxiaolong.androidmvpsample.retrofit.ApiStores;
 import com.wuxiaolong.androidmvpsample.retrofit.AppClient;
 import com.wuxiaolong.androidutils.library.LogUtil;
@@ -38,8 +40,9 @@ import rx.subscriptions.CompositeSubscription;
  * 微信公众号：吴小龙同学
  * 个人博客：http://wuxiaolong.me/
  */
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements IView<P> {
     public Activity mActivity;
+    protected P mvpPresenter;
     public ApiStores apiStores = AppClient.retrofit().create(ApiStores.class);
     private CompositeSubscription mCompositeSubscription;
     private List<Call> calls;
@@ -70,6 +73,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mvpPresenter = createPresenter();
     }
 
 

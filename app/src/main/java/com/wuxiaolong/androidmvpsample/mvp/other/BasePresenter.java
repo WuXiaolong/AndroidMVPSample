@@ -1,5 +1,6 @@
 package com.wuxiaolong.androidmvpsample.mvp.other;
 
+import com.wuxiaolong.androidmvpsample.mvp.IPresenter;
 import com.wuxiaolong.androidmvpsample.retrofit.ApiStores;
 import com.wuxiaolong.androidmvpsample.retrofit.AppClient;
 
@@ -18,17 +19,18 @@ import rx.subscriptions.CompositeSubscription;
  * 微信公众号：吴小龙同学
  * 个人博客：http://wuxiaolong.me/
  */
-public class BasePresenter<V> {
+public class BasePresenter<V> implements IPresenter<V> {
     public V mvpView;
     protected ApiStores apiStores;
     private CompositeSubscription mCompositeSubscription;
 
+    @Override
     public void attachView(V mvpView) {
         this.mvpView = mvpView;
         apiStores = AppClient.retrofit().create(ApiStores.class);
     }
 
-
+    @Override
     public void detachView() {
         this.mvpView = null;
         onUnsubscribe();

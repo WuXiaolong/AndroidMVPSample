@@ -8,12 +8,10 @@ import com.wuxiaolong.androidmvpsample.R;
 import com.wuxiaolong.androidmvpsample.mvp.main.MainModel;
 import com.wuxiaolong.androidmvpsample.mvp.main.MainPresenter;
 import com.wuxiaolong.androidmvpsample.mvp.main.MainView;
-import com.wuxiaolong.androidmvpsample.mvp.other.MvpActivity;
 import com.wuxiaolong.androidmvpsample.retrofit.ApiCallback;
 import com.wuxiaolong.androidmvpsample.retrofit.RetrofitCallback;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 
@@ -26,7 +24,7 @@ import retrofit2.Call;
  * 微信公众号：吴小龙同学
  * 个人博客：http://wuxiaolong.me/
  */
-public class MainActivity extends MvpActivity<MainPresenter> implements MainView {
+public class MainActivity extends BaseActivity<MainPresenter> implements MainView {
 
     @Bind(R.id.text)
     TextView text;
@@ -35,13 +33,11 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
         initToolBarAsHome("MVP+Retrofit+Rxjava");
-
     }
 
     @Override
-    protected MainPresenter createPresenter() {
+    public MainPresenter createPresenter() {
         return new MainPresenter(this);
     }
 
