@@ -8,14 +8,10 @@ package com.wuxiaolong.androidmvpsample.mvp.main;
  * 微信公众号：吴小龙同学
  * 个人博客：http://wuxiaolong.me/
  */
-public interface MainView {
+public interface MainView extends BaseView{
 
     void getDataSuccess(MainModel model);
 
     void getDataFail(String msg);
 
-
-    void showLoading();
-
-    void hideLoading();
 }

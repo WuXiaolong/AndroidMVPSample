@@ -59,17 +59,6 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
     }
 
 
-    @Override
-    public void showLoading() {
-        showProgressDialog();
-    }
-
-    @Override
-    public void hideLoading() {
-        dismissProgressDialog();
-    }
-
-
     @OnClick({R.id.button0, R.id.button1, R.id.button2})
     public void onClick(View view) {
         switch (view.getId()) {

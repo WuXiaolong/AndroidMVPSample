@@ -30,4 +30,12 @@ public abstract class MvpActivity<P extends BasePresenter> extends BaseActivity 
             mvpPresenter.detachView();
         }
     }
+
+    public void showLoading() {
+        showProgressDialog();
+    }
+
+    public void hideLoading() {
+        dismissProgressDialog();
+    }
 }

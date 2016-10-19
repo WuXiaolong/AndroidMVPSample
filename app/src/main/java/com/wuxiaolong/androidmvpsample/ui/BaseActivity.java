@@ -2,7 +2,6 @@ package com.wuxiaolong.androidmvpsample.ui;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -67,11 +66,6 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
 
     @Override
     protected void onDestroy() {
@@ -88,8 +82,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     private void callCancel() {
-        LogUtil.d("callCancel");
-        if (calls.size() > 0) {
+        if (calls != null && calls.size() > 0) {
             for (Call call : calls) {
                 if (!call.isCanceled())
                     call.cancel();
