@@ -18,10 +18,17 @@
 
 1. [RxBus](http://wuxiaolong.me/2016/04/07/rxbus/)
 
-# 微信公众号
-欢迎微信扫一扫关注：不止于技术分享，每天进步一点点。
+# 联系我
+我的微信公众号：吴小龙同学，欢迎关注交流。
 
 ![](http://7q5c2h.com1.z0.glb.clouddn.com/qrcode_wuxiaolong.jpg)
+
+
+Android技术交流群
+
+④群 331553260<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=49d34fe949967c15001e702030f3f69e523c624771a8059319ab1e247cc4f723"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="剩者为王④群" title="剩者为王④群"></a>
+
+
 
 # 关于作者
 [点击查看](http://wuxiaolong.me/about/)
