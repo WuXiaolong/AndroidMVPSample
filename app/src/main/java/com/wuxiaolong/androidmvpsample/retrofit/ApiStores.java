@@ -8,10 +8,8 @@ import retrofit2.http.Path;
 import rx.Observable;
 
 /**
- * Created by WuXiaolong
- * on 2016/3/24.
+ * Created by WuXiaolong on 2016/3/24.
  * github:https://github.com/WuXiaolong/
- * weibo:http://weibo.com/u/2175011601
  * 微信公众号：吴小龙同学
  * 个人博客：http://wuxiaolong.me/
  */

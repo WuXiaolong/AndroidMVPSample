@@ -4,7 +4,6 @@ package com.wuxiaolong.androidmvpsample.mvp.main;
  * Created by WuXiaolong on 2015/9/23.
  * 业务具体处理，包括负责存储、检索、操纵数据等
  * github:https://github.com/WuXiaolong/
- * weibo:http://weibo.com/u/2175011601
  * 微信公众号：吴小龙同学
  * 个人博客：http://wuxiaolong.me/
  */
