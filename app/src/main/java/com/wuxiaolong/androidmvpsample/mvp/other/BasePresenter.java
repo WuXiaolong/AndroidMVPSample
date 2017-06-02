@@ -1,7 +1,7 @@
 package com.wuxiaolong.androidmvpsample.mvp.other;
 
 import com.wuxiaolong.androidmvpsample.retrofit.ApiStores;
-import com.wuxiaolong.androidmvpsample.retrofit.AppClient;
+import com.wuxiaolong.androidmvpsample.retrofit.ApiClient;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -23,7 +23,7 @@ public class BasePresenter<V> {
 
     public void attachView(V mvpView) {
         this.mvpView = mvpView;
-        apiStores = AppClient.retrofit().create(ApiStores.class);
+        apiStores = ApiClient.retrofit().create(ApiStores.class);
     }
 
 

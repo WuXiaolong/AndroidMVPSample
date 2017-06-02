@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.wuxiaolong.androidmvpsample.R;
 import com.wuxiaolong.androidmvpsample.retrofit.ApiStores;
-import com.wuxiaolong.androidmvpsample.retrofit.AppClient;
+import com.wuxiaolong.androidmvpsample.retrofit.ApiClient;
 import com.wuxiaolong.androidutils.library.LogUtil;
 
 import java.util.ArrayList;
@@ -37,7 +37,6 @@ import rx.subscriptions.CompositeSubscription;
  */
 public class BaseActivity extends AppCompatActivity {
     public Activity mActivity;
-    public ApiStores apiStores = AppClient.retrofit().create(ApiStores.class);
     private CompositeSubscription mCompositeSubscription;
     private List<Call> calls;
 
@@ -70,6 +69,10 @@ public class BaseActivity extends AppCompatActivity {
         callCancel();
         onUnsubscribe();
         super.onDestroy();
+    }
+
+    public ApiStores apiStores() {
+        return ApiClient.retrofit().create(ApiStores.class);
     }
 
     public void addCalls(Call call) {

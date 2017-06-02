@@ -75,7 +75,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
 
     private void loadDataByRetrofit() {
         showProgressDialog();
-        Call<MainModel> call = apiStores.loadDataByRetrofit("101190201");
+        Call<MainModel> call = apiStores().loadDataByRetrofit("101190201");
         call.enqueue(new RetrofitCallback<MainModel>() {
             @Override
             public void onSuccess(MainModel model) {
@@ -103,7 +103,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
     //全国+国外主要城市代码http://mobile.weather.com.cn/js/citylist.xml
     private void loadDataByRetrofitRxjava() {
         showProgressDialog();
-        addSubscription(apiStores.loadDataByRetrofitRxjava("101220602"),
+        addSubscription(apiStores().loadDataByRetrofitRxjava("101220602"),
                 new ApiCallback<MainModel>() {
                     @Override
                     public void onSuccess(MainModel model) {

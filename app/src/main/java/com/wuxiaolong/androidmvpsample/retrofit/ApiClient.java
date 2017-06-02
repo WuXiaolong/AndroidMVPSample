@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * 微信公众号：吴小龙同学
  * 个人博客：http://wuxiaolong.me/
  */
-public class AppClient {
+public class ApiClient {
     public static Retrofit mRetrofit;
 
     public static Retrofit retrofit() {
