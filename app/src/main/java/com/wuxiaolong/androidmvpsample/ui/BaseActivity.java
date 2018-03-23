@@ -21,13 +21,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
-import rx.Observable;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by WuXiaolong on 2015/9/23.
@@ -35,9 +35,9 @@ import rx.subscriptions.CompositeSubscription;
  * 微信公众号：吴小龙同学
  * 个人博客：http://wuxiaolong.me/
  */
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
     public Activity mActivity;
-    private CompositeSubscription mCompositeSubscription;
+    private CompositeDisposable mCompositeDisposable;
     private List<Call> calls;
 
     @Override
@@ -60,7 +60,6 @@ public class BaseActivity extends AppCompatActivity {
         super.setContentView(view, params);
         ButterKnife.bind(this);
         mActivity = this;
-
     }
 
 
@@ -93,36 +92,37 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
-    public void addSubscription(Observable observable, Subscriber subscriber) {
-        if (mCompositeSubscription == null) {
-            mCompositeSubscription = new CompositeSubscription();
+    public <T> void addSubscription(Observable<T> observable, DisposableObserver<T> observer) {
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = new CompositeDisposable();
         }
-        mCompositeSubscription.add(observable
-                .subscribeOn(Schedulers.io())
+        mCompositeDisposable.add(observer);
+
+        observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(subscriber));
+                .subscribe(observer);
     }
 
-    public void addSubscription(Subscription subscription) {
-        if (mCompositeSubscription == null) {
-            mCompositeSubscription = new CompositeSubscription();
+    public void addSubscription(Disposable disposable) {
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = new CompositeDisposable();
         }
-        mCompositeSubscription.add(subscription);
+        mCompositeDisposable.add(disposable);
     }
 
     public void onUnsubscribe() {
-        LogUtil.d("onUnsubscribe");
+        LogUtil.d("onUnSubscribe");
         //取消注册，以避免内存泄露
-        if (mCompositeSubscription != null && mCompositeSubscription.hasSubscriptions())
-            mCompositeSubscription.unsubscribe();
+        if (mCompositeDisposable != null)
+            mCompositeDisposable.dispose();
     }
 
     public Toolbar initToolBar(String title) {
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-            TextView toolbaTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+            TextView toolbaTitle = toolbar.findViewById(R.id.toolbar_title);
             toolbaTitle.setText(title);
         }
         ActionBar actionBar = getSupportActionBar();

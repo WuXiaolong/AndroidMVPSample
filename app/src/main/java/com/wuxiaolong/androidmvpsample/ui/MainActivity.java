@@ -12,7 +12,7 @@ import com.wuxiaolong.androidmvpsample.mvp.other.MvpActivity;
 import com.wuxiaolong.androidmvpsample.retrofit.ApiCallback;
 import com.wuxiaolong.androidmvpsample.retrofit.RetrofitCallback;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
@@ -26,16 +26,14 @@ import retrofit2.Call;
  */
 public class MainActivity extends MvpActivity<MainPresenter> implements MainView {
 
-    @Bind(R.id.text)
+    @BindView(R.id.text)
     TextView text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
         initToolBarAsHome("MVP+Retrofit+Rxjava");
-
     }
 
     @Override
@@ -64,7 +62,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
                 loadDataByRetrofit();
                 break;
             case R.id.button1:
-                loadDataByRetrofitRxjava();
+                loadDataByRetrofitRxJava();
                 break;
             case R.id.button2:
                 //请求接口
@@ -101,10 +99,12 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
     }
 
     //全国+国外主要城市代码http://mobile.weather.com.cn/js/citylist.xml
-    private void loadDataByRetrofitRxjava() {
+    private void loadDataByRetrofitRxJava() {
         showProgressDialog();
-        addSubscription(apiStores().loadDataByRetrofitRxjava("101220602"),
+        addSubscription(
+                apiStores().loadDataByRetrofitRxjava("101220602"),
                 new ApiCallback<MainModel>() {
+
                     @Override
                     public void onSuccess(MainModel model) {
                         dataSuccess(model);
@@ -113,7 +113,6 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
                     @Override
                     public void onFailure(String msg) {
                         toastShow(msg);
-
                     }
 
                     @Override

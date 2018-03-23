@@ -2,10 +2,10 @@ package com.wuxiaolong.androidmvpsample.retrofit;
 
 import com.wuxiaolong.androidmvpsample.mvp.main.MainModel;
 
+import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import rx.Observable;
 
 /**
  * Created by WuXiaolong on 2016/3/24.

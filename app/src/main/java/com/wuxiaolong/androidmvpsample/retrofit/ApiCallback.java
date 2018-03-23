@@ -3,8 +3,10 @@ package com.wuxiaolong.androidmvpsample.retrofit;
 
 import com.wuxiaolong.androidutils.library.LogUtil;
 
-import retrofit2.adapter.rxjava.HttpException;
-import rx.Subscriber;
+
+import io.reactivex.observers.DisposableObserver;
+import retrofit2.HttpException;
+
 
 /**
  * Created by WuXiaolong on 2016/9/22.
@@ -12,7 +14,7 @@ import rx.Subscriber;
  * 微信公众号：吴小龙同学
  * 个人博客：http://wuxiaolong.me/
  */
-public abstract class ApiCallback<M> extends Subscriber<M> {
+public abstract class ApiCallback<M> extends DisposableObserver<M> {
 
     public abstract void onSuccess(M model);
 
@@ -50,7 +52,7 @@ public abstract class ApiCallback<M> extends Subscriber<M> {
     }
 
     @Override
-    public void onCompleted() {
+    public void onComplete() {
         onFinish();
     }
 }
