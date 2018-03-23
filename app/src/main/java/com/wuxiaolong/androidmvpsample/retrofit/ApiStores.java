@@ -23,5 +23,5 @@ public interface ApiStores {
 
     //加载天气
     @GET("adat/sk/{cityId}.html")
-    Observable<MainModel> loadDataByRetrofitRxjava(@Path("cityId") String cityId);
+    Observable<MainModel> loadDataByRetrofitRxJava(@Path("cityId") String cityId);
 }

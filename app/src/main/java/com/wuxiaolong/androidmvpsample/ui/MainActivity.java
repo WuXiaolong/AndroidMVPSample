@@ -13,7 +13,6 @@ import com.wuxiaolong.androidmvpsample.retrofit.ApiCallback;
 import com.wuxiaolong.androidmvpsample.retrofit.RetrofitCallback;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 
@@ -102,7 +101,7 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
     private void loadDataByRetrofitRxJava() {
         showProgressDialog();
         addSubscription(
-                apiStores().loadDataByRetrofitRxjava("101220602"),
+                apiStores().loadDataByRetrofitRxJava("101220602"),
                 new ApiCallback<MainModel>() {
 
                     @Override
