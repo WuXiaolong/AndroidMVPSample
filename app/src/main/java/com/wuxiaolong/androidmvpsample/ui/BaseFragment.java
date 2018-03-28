@@ -11,9 +11,11 @@ import android.widget.Toast;
 
 import com.wuxiaolong.androidmvpsample.R;
 
+import org.reactivestreams.Subscription;
+
 import butterknife.ButterKnife;
-import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableObserver;
 
 /**
  * Created by WuXiaolong on 2015/9/23.
@@ -55,19 +57,19 @@ public class BaseFragment extends Fragment {
         onUnsubscribe();
     }
 
-    private CompositeSubscription mCompositeSubscription;
+    private CompositeDisposable mCompositeDisposable;
 
     public void onUnsubscribe() {
         //取消注册，以避免内存泄露
-        if (mCompositeSubscription != null) {
-            mCompositeSubscription.unsubscribe();
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.dispose();
         }
     }
 
-    public void addSubscription(Subscription subscription) {
-//        if (mCompositeSubscription == null) {
-        mCompositeSubscription = new CompositeSubscription();
+    public void addSubscription(DisposableObserver observer) {
+//        if (mCompositeDisposable == null) {
+        mCompositeDisposable = new CompositeDisposable();
 //        }
-        mCompositeSubscription.add(subscription);
+        mCompositeDisposable.add(observer);
     }
 }

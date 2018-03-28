@@ -17,7 +17,7 @@ public class MainPresenter extends BasePresenter<MainView> {
 
     public void loadDataByRetrofitRxjava(String cityId) {
         mvpView.showLoading();
-        addSubscription(apiStores.loadDataByRetrofitRxjava(cityId),
+        addSubscription(apiStores.loadDataByRetrofitRxJava(cityId),
                 new ApiCallback<MainModel>() {
                     @Override
                     public void onSuccess(MainModel model) {
