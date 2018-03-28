@@ -11,9 +11,6 @@ import android.widget.Toast;
 
 import com.wuxiaolong.androidmvpsample.R;
 
-import org.reactivestreams.Subscription;
-
-import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
 
@@ -30,7 +27,6 @@ public class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
         mActivity = getActivity();
     }
 

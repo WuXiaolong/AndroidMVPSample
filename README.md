@@ -1,4 +1,4 @@
-> MVP+Retrofit+RxJava实践小结，此Sample最初是Android MVP示例，后来融合Retrofit和RxJava，供参考。
+> MVP + Retrofit + RxJava2 实践小结，此 Sample 最初是 Android MVP 示例，后来融合 Retrofit 和 RxJava2，供参考。
 
 
 # 效果预览
@@ -19,17 +19,8 @@
 1. [RxBus](http://wuxiaolong.me/2016/04/07/rxbus/)
 
 # 联系我
-我的微信公众号：吴小龙同学，欢迎关注交流。
+我的微信公众号：吴小龙同学，欢迎交流。
 
 ![](http://7q5c2h.com1.z0.glb.clouddn.com/qrcode_wuxiaolong.jpg)
 
 
-# 更多交流
-Android技术交流群-剩者为王⑤群：590967484
-
-![](http://7q5c2h.com1.z0.glb.clouddn.com/qun5.png)
-
-
-
-# 关于作者
-[点击查看](http://wuxiaolong.me/about/)

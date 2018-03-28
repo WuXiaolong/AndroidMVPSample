@@ -1,9 +1,7 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.3"
 
     defaultConfig {
         applicationId "com.wuxiaolong.androidmvpsample"
@@ -14,13 +12,11 @@ android {
 }
 
 ext {
-    androidutilsVersion = '1.0.5'
+    androidutilsVersion = '1.0.6'
     appcompatVersion = '27.1.0'
     butterknifeVersion = '8.4.0'
     retrofitVersion = '2.3.0'
-
     logginginterceptor = '3.9.1'
-
     rxjavaVersion = '2.1.11'
     rxandroidVersion = "2.0.2"
 }
@@ -28,16 +24,12 @@ ext {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.wuxiaolong.androidutils:androidutils:$androidutilsVersion"
-
     implementation "com.android.support:appcompat-v7:$appcompatVersion"
-//    //butterknife
-    //noinspection GradleDependency
-    implementation "com.jakewharton:butterknife:$butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$logginginterceptor"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    implementation  "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
 

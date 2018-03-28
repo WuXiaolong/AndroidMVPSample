@@ -1,12 +1,11 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.MainActivity">
 
-    <include layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar" />
 
     <Button
         android:id="@+id/button0"
@@ -15,7 +14,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
-        android:text="普通写法(Retrofit)"/>
+        android:onClick="onClick"
+        android:text="@string/text0" />
 
     <Button
         android:id="@+id/button1"
@@ -24,7 +24,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
-        android:text="普通写法(Retrofit+Rxjava)"/>
+        android:onClick="onClick"
+        android:text="@string/text1" />
 
     <Button
         android:id="@+id/button2"
@@ -33,12 +34,13 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
-        android:text="MVP+Retrofit+Rxjava"/>
+        android:onClick="onClick"
+        android:text="@string/text2" />
 
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp" />
 
 </LinearLayout>

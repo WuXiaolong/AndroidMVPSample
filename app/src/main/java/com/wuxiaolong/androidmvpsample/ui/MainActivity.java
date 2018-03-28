@@ -12,8 +12,6 @@ import com.wuxiaolong.androidmvpsample.mvp.other.MvpActivity;
 import com.wuxiaolong.androidmvpsample.retrofit.ApiCallback;
 import com.wuxiaolong.androidmvpsample.retrofit.RetrofitCallback;
 
-import butterknife.BindView;
-import butterknife.OnClick;
 import retrofit2.Call;
 
 /**
@@ -25,14 +23,14 @@ import retrofit2.Call;
  */
 public class MainActivity extends MvpActivity<MainPresenter> implements MainView {
 
-    @BindView(R.id.text)
-    TextView text;
+    private TextView text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initToolBarAsHome("MVP+Retrofit+Rxjava");
+        text = findViewById(R.id.text);
+        initToolBarAsHome(getString(R.string.title));
     }
 
     @Override
@@ -49,12 +47,11 @@ public class MainActivity extends MvpActivity<MainPresenter> implements MainView
 
     @Override
     public void getDataFail(String msg) {
-        toastShow("网络不给力");
+        toastShow(getString(R.string.net_error));
 
     }
 
 
-    @OnClick({R.id.button0, R.id.button1, R.id.button2})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button0:

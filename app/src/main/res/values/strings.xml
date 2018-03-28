@@ -6,4 +6,9 @@
     <string name="wd">\n风向:</string>
     <string name="ws">\n风级:</string>
     <string name="time">\n发布时间:</string>
+    <string name="net_error">网络不给力</string>
+    <string name="title">MVP+Retrofit+Rxjava2</string>
+    <string name="text0">普通写法(Retrofit)</string>
+    <string name="text1">普通写法(Retrofit+Rxjava)</string>
+    <string name="text2">MVP+Retrofit+Rxjava</string>
 </resources>
